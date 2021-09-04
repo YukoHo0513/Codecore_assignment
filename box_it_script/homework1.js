@@ -11,7 +11,7 @@ console.log(drawLine(4));
 
 function drawTopBorder(number) {
     let newLine = "";
-    let firstCornerLine = "\u250F";
+    let firstCornerLine = "\u2521";
     let secondCornerLine = "\u2513";
     newLine = drawLine(4)
     // for (let j = 1; j <= number; j++) 
@@ -33,3 +33,15 @@ function drawMiddleBorder(number) {
     return firstVerLine + newLine + secondVerLine;
 }
 console.log(drawMiddleBorder(8));
+
+
+
+
+function drawBottomBorder(number) {
+    let newLine = "";
+    let firstCornerLine = "\u2517";
+    let secondCornerLine = "\u251B"
+    newLine = drawLine(4);
+    return firstCornerLine + newLine + secondCornerLine;
+}
+console.log(drawBottomBorder(2));
