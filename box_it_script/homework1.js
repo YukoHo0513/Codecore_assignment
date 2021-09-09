@@ -1,3 +1,8 @@
+let str1 = process.argv[2];
+let str2 = process.argv[3];
+let str3 = process.argv[4];
+
+
 function drawLine(number) {
     let newLine = "";
     for (let i = 1; i <= number; i++) {
@@ -60,13 +65,17 @@ console.log(drawBarsAround("  You are Bill"));
 
 
 function boxIt(array) {
+    let result = "";
+    if (array.length === 0) {
+        result = drawTopBorder(1) + "\n" + drawBottomBorder(1);
+        return result;
+    }
     let longestLength = array[0].length;
     for (let x = 1; x < array.length; x++) {
         if (array[x].length > longestLength) {
             longestLength = array[x].length;
         }
     }
-    let result = "";
     if (array.length === 1) {
         let x = 0;
         result += drawTopBorder(longestLength) + "\n" + drawBarsAround(array[x]) + "\n" 
@@ -87,5 +96,6 @@ function boxIt(array) {
     return result
 }
 
-console.log(boxIt(['Jon Snow', 'Cersei Lannister', 'Yuko Ho']));
-console.log(boxIt(['Jon Snow']));
+
+console.log(boxIt([]));
+
