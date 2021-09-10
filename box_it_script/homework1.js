@@ -62,6 +62,20 @@ console.log(drawBarsAround("  You are Bill"));
 
 
 
+function checkString(str1, str2, str3) {
+    let willPassedInArr = [];
+    if (str1 !== undefined) {
+        willPassedInArr.push(str1);
+    } 
+    if (str2 !== undefined ) {
+        willPassedInArr.push(str2);
+    }
+    if (str3 !== undefined ) {
+        willPassedInArr.push(str3);
+    }
+    return willPassedInArr;
+}
+const checkedStrings = checkString(str1, str2, str3)
 
 
 function boxIt(array) {
@@ -97,5 +111,4 @@ function boxIt(array) {
 }
 
 
-console.log(boxIt([]));
-
+console.log(boxIt(checkedStrings));
