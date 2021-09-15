@@ -10,6 +10,7 @@ class Turtle {
             this.y = 0;
         }
         this.direction = 90;
+
     }
     forward(numOfSteps) {
         let newArr = [];
@@ -58,10 +59,9 @@ class Turtle {
         }
     }
     allPoints() {
-
+        return this.path
     }
     print() {
-
     }
 }
 
@@ -84,6 +84,10 @@ console.log(masterOogway.right());
 console.log(masterOogway.direction);
 console.log(masterOogway.forward(1));
 console.log(masterOogway.path);
+console.log(masterOogway.print());
+
+
+// console.log("\n x x x x \n o o o x \n o o o x");
 
 // x is yoko
 // y is tate
