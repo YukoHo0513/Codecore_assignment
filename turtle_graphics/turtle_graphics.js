@@ -1,93 +1,84 @@
 class Turtle {
-    constructor(x, y) {
+    constructor(x, y){
         this.x = x;
         this.y = y;
-        this.path = [[x, y]];
-        if (x === undefined) {
+        this.direction = 0;
+
+        if (this.x === undefined) {
             this.x = 0;
-        }
-        if (y === undefined) {
+        } 
+        if (this.y === undefined) {
             this.y = 0;
         }
-        this.direction = 90;
-
+        this.bigPath = [[this.x, this.y]];
     }
-    forward(numOfSteps) {
-        let newArr = [];
+    forward(numOfStep){
+        this.path = [];
 
-        if (this.direction === 90) {   // This is facing east
-            this.x += numOfSteps
-            newArr.push(this.x)
-            newArr.push(this.y)
-            this.path.push(newArr);
-        } 
-        if (this.direction === 180) {  // This is facing south
-            newArr.push(this.x)
-            this.y += numOfSteps
-            newArr.push(this.y)
-            this.path.push(newArr);
-
+        if (this.direction === 360 || this.direction === 0) { // facing east
+            for (let i = 0; i < numOfStep; i++) {
+                this.x += numOfStep;
+                this.path.push(this.x);
+                this.path.push(this.y);
+                this.bigPath.push(this.path);
+            }
+            this.x += numOfStep;
+            this.path.push(this.x);
+            this.path.push(this.y);
+            this.bigPath.push(this.path);
+        } else if (this.direction === 90) { // facing south
+            this.y += numOfStep;
+            this.path.push(this.x);
+            this.path.push(this.y);
+            this.bigPath.push(this.path);
+        } else if (this.direction === 180) { // facing west
+            this.x -= numOfStep;
+            this.path.push(this.x);
+            this.path.push(this.y);
+            this.bigPath.push(this.path);
+        } else if (this.direction === 270) { // facing north
+            this.y -= numOfStep;
+            this.path.push(this.x);
+            this.path.push(this.y);
+            this.bigPath.push(this.path);
         }
-        if (this.direction === 270) {  // This is facing west
-            this.x -= numOfSteps
-            newArr.push(this.x)
-            newArr.push(this.y)
-            this.path.push(newArr);
 
-        }
-        if (this.direction === 360 || this.direction === 0) {  // This is facing north
-            newArr.push(this.x)
-            this.y -= numOfSteps;
-            newArr.push(this.y)
-            this.path.push(newArr);
-
-        }
-
+        return this.bigPath;
     }
     right() {
-        if (this.direction === 360) {
-            this.direction = 0
-        } else {
-            this.direction += 90
+        if (this.direction >= 360) {
+            this.direction = 0;
         }
+        this.direction += 90;
+
     }
     left() {
-        if (this.direction === 0) {
-            this.direction = 360
-        } else {
-            this.direction -= 90
+        if (this.direction <= 0) {
+            this.direction = 360;
         }
+        this.direction -= 90;
     }
     allPoints() {
-        return this.path
+        this.bigPath;
     }
     print() {
+        for (let i = 0; i < 5; i++) {
+            this.row1 = ["□", "□", "□", "□", "□"];
+            
+        }
+        return this.row1;
     }
 }
+const Yuko = new Turtle()
+console.log(Yuko);
+// console.log(Yuko.forward(3));
+Yuko.forward(3);
+console.log(Yuko.bigPath);
+Yuko.forward(2);
+console.log(Yuko.bigPath);
+Yuko.print();
+console.log(this.row1);
 
-const masterOogway = new Turtle(0, 0)
-console.log(masterOogway.forward(2)); // masterOogway.path
-console.log(masterOogway.x); 
-console.log(masterOogway.y);
-console.log(masterOogway.path);
-console.log(masterOogway.right());
-console.log(masterOogway.direction);
-console.log(masterOogway.forward(3));
-console.log(masterOogway.path);
-console.log(masterOogway.right());
-console.log(masterOogway.direction);
-console.log(masterOogway.forward(1));
-console.log(masterOogway.path);
-console.log(masterOogway.forward(1));
-console.log(masterOogway.path);
-console.log(masterOogway.right());
-console.log(masterOogway.direction);
-console.log(masterOogway.forward(1));
-console.log(masterOogway.path);
-console.log(masterOogway.print());
-
-
-// console.log("\n x x x x \n o o o x \n o o o x");
 
 // x is yoko
 // y is tate
