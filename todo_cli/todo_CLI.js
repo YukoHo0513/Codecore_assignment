@@ -6,7 +6,6 @@ const rl = readline.createInterface({
 })
 
 let listArr = [];
-let itemNum = 0;
 
 function viewFunc() {
     let newStr = "";
@@ -24,27 +23,48 @@ function viewFunc() {
 function newFunc() {
     rl.question(`What do you want to add to the list? \n > `, (answer) => {
         // let editedAnswer = answer.charAt(0).toUppercase() + answer.slice(1);
-        listArr.push(`${itemNum} [] ${answer}`)
-        itemNum++;
+        listArr.push(`${listArr.length} [] ${answer}`)
         todoCli();
     })
 
 }
 
-function completeFunc(ansNum) {
-    if (ansNum >= listArr.length || ansNum < 0) {
+function completeFunc(compAnsNum) {
+    if (compAnsNum >= listArr.length || compAnsNum < 0) {
         console.log('Please put the correct number!');
     } else {
-        let secondSquareIndex = listArr[ansNum].indexOf(']');
-        let slicedStr = listArr[ansNum].slice(secondSquareIndex + 2)
+        let secondSquareIndex = listArr[compAnsNum].indexOf(']');
+        let slicedStr = listArr[compAnsNum].slice(secondSquareIndex + 2)
         console.log(`Completed "${slicedStr}"`);
 
-        let firstSquareIndex = listArr[ansNum].indexOf('[');
-        let firstPartStr = listArr[ansNum].slice(0, firstSquareIndex + 1);
-        let secondPartStr = listArr[ansNum].slice(secondSquareIndex);
+        let firstSquareIndex = listArr[compAnsNum].indexOf('[');
+        let firstPartStr = listArr[compAnsNum].slice(0, firstSquareIndex + 1);
+        let secondPartStr = listArr[compAnsNum].slice(secondSquareIndex);
         let newSentence = firstPartStr + "✓" + secondPartStr
 
-        listArr[ansNum] = newSentence;
+        listArr[compAnsNum] = newSentence;
+    }
+
+    todoCli();
+}
+
+function deleteFunc(delAnsNum) {
+    if (listArr.length === 0 || delAnsNum >= listArr.length) {
+        console.log("You have nothing on your list!");
+    } else {
+        let strPosition = listArr[delAnsNum].indexOf(']');
+        let deletedStr2 = listArr[delAnsNum].slice(strPosition + 2);
+        console.log(`Deleted "${deletedStr2}"`);
+
+        listArr.splice(delAnsNum, 1); // to delete item from array
+
+        for (let i = 0; i < listArr.length; i++) {
+            let numPartIndex = listArr[i].indexOf('[');
+            let backStr = listArr[i].slice(numPartIndex);
+
+            let revisedPhrase = i + " " + backStr;
+            listArr[i] = revisedPhrase;
+        }
     }
 
     todoCli();
@@ -61,17 +81,20 @@ function todoCli() {
 
         if (answer === 'v') {
             viewFunc();
-            // return todoCli();
         }
 
         if (answer === 'n') {
             newFunc();
-            // return todoCli();
         }
 
         if (/\d/.test(answer) === true && answer.includes('c')) {
-            let ansNum = answer.slice(1);
-            completeFunc(ansNum);
+            let compAnsNum = answer.substring(1);
+            completeFunc(compAnsNum);
+        }
+
+        if (/\d/.test(answer) === true && answer.includes('d')) {
+            let delAnsNum = answer.substring(1);
+            deleteFunc(delAnsNum);
         }
 
         if (answer === 'q') {
