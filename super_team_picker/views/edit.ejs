@@ -1,0 +1,50 @@
+<%- include('./partials/header.ejs') %>
+
+<div class="edit-form-style">
+    <form  action="/cohorts/<%= cohort.id%>" class="container" method="POST">
+        <h2>Edit Cohort</h2>
+
+        <div class="mb-3">
+            <input type="hidden" name="_method" value="PATCH">
+        </div>
+        <div class="mb-3">
+            <label for="logo" class="d-block form-label">Logo Url</label>
+            <input id="logo" type="text" name="logoUrl" value="<%= cohort.logoUrl %>">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="d-block form-label">Name</label>
+            <input id="name" type="text" name="name" value="<%= cohort.name %>">
+        </div>
+        <div class="mb-3">
+            <label for="members" class="d-block form-label">Members</label>
+            <textarea name="members" id="members" cols="30" rows="10">
+                <%= cohort.members %>
+            </textarea>
+        </div>
+        <div class="d-flex justify-content-end">
+            <input type="submit" value="Edit">
+        </div>
+    </form>
+</div>
+
+    <!-- <form action="/cohorts" class="container" method="POST">
+        <div class="mb-3">
+            <label for="logo" class="form-label">Logo Url</label>
+            <input name="logoUrl" type="text" class="form-control" id="logo"
+                placeholder="e.g. https://www.example.com/some.png">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input name="name" type="text" class="form-control" id="name" placeholder="Flying Funks">
+        </div>
+        <div class="mb-3">
+            <label for="members" class="form-label">Members</label>
+            <textarea name="members" class="form-control" id="members" rows="3"
+                placeholder="Jon Snow, Daenerys, Melisandra, Arya Stark"></textarea>
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+        </div>
+    </form> -->
+
+    <%- include('./partials/footer.ejs') %>

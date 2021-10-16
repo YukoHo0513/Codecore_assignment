@@ -1,0 +1,24 @@
+<%- include('./partials/header.ejs') %>
+
+    <% for (let element of list) {%>
+        <div class="container">
+            <div class="card p-3">
+                <div class="big-container">
+                    <img src='<%= element.logoUrl %>' class="card-img-top child-container">
+                    <h5 class="card-title child-container">
+                        <%= element.name %>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <%= element.members %>
+                    </p>
+                    <a href="/cohorts/<%= element.id %> " class="btn btn-primary">Show cohort</a>
+                    
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+
+            <%- include('./partials/footer.ejs') %>
